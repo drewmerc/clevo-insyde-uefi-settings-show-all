@@ -11,6 +11,22 @@ If you think something is wrongly set and you are unsure, just go to load the op
     + value is 0x01
       + tested on hasee_z7m-ct5na(~~oem modded bios~~)
 
+
+# finding the offset
+
+1. Download ### [UEFITool](https://github.com/LongSoft/UEFITool)  ### [Universal-IFR-Extractor](https://github.com/LongSoft/Universal-IFR-Extractor) and ### [InsydeH2OUVE_x86_WINx64_200.00.01.00](https://www.google.com/search?q=InsydeH2OUVE_x86_WINx64_200.00.01.00)
+2.  Download the bios https://repo.palkeo.com/clevo-mirror/NH5x_70_RDx_RCx_RAx_RHx(Q)
+3.  Open the bios (NHx0RC.13 or NHx0RC13.efi in this case) and open in H2OUVE the click Setup/Advanced/Advanced Chipset Control 
+![rom files](https://i.imgur.com/xWOfZjk.png)
+![H2OUVE ](https://i.imgur.com/lzspIFW.png)
+4. Here you can change Setup Menu Insyde Full Show to show and browse around for the menu to find which menu you wish to unlock but for this guide i will unlock everything
+5.  Open the bios rom in UEFITool and search for the text string "Setup Menu Insyde Full Show" from the action menu ![search](https://i.imgur.com/1bjthWJ.png)
+6.  Double click "Unicode text "Setup Menu Insyde Full Show" in DriverSampleDxe/PE32 image section at header-offset 94B28h" once found in the bottom search tab, once found which will take you to the correct section once at the correct section right click and export as is ![export](https://i.imgur.com/DQ7lqOn.png)
+7. Open the exported file "Section_PE32_image_DriverSampleDxe_SetupUtility.sct" in IRFExtractor and extract ![extract](https://i.imgur.com/Hc09jRU.png)
+8. Open extracted text file "Section_PE32_image_DriverSampleDxe_SetupUtility IFR.txt" in notepad and search for "Setup Menu Insyde Full Show" ![notepad](https://i.imgur.com/SF4t4sH.png)
+9. Setup Menu Insyde Full Show, VarStoreInfo (VarOffset/VarName): 0x133
+
+
 # generic steps
 1.  Download the modded "uefi shell" here https://github.com/datasone/grub-mod-setup_var ,and save it in a bootable device
 2.  restart into uefi main menu(from windows advanced reboot or press f2 after power on),choose "Boot from file",then choose it.
